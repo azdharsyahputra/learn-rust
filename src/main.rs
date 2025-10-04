@@ -1,15 +1,21 @@
 use std::io;
-
 fn main(){
-    println!("Siapa Namamu?");
+    let a = [1,2,3,4,5];
 
-    println!("Nama saya ");
+    println!("choose one array {:?}",a);
 
-    let mut guess = String::new();
+    let mut index = String::new();
 
     io::stdin()
-        .read_line(&mut guess)
-        .expect("Siapa ya?");
+        .read_line(&mut index)
+        .expect("failed to load line");
+    
+    let index: usize = index
+    .trim()
+    .parse()
+    .expect("index entered not numver");
 
-    println!("Namamu adalah {guess}");
+    let element = a[index];
+
+    println!("The entered value at index {index} is element {element}");
 }
