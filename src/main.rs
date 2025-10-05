@@ -1,21 +1,13 @@
-use std::io;
-fn main(){
-    let a = [1,2,3,4,5];
+fn main() {
+    let s1 = String::from("hello");
 
-    println!("choose one array {:?}",a);
+    let (s2, len) = calculate_length(s1);
 
-    let mut index = String::new();
+    println!("The length of '{s2}' is {len}.");
+}
 
-    io::stdin()
-        .read_line(&mut index)
-        .expect("failed to load line");
-    
-    let index: usize = index
-    .trim()
-    .parse()
-    .expect("index entered not numver");
+fn calculate_length(s: String) -> (String, usize) {
+    let length = s.len();
 
-    let element = a[index];
-
-    println!("The entered value at index {index} is element {element}");
+    (s, length)
 }
