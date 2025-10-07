@@ -6,6 +6,7 @@ fn main(){
     stack_heap();
     string();
     string_type();
+    recall();
 }
 
 fn variable_scope(){
@@ -53,4 +54,43 @@ fn string_type(){
 
     let diana = name.replace("Ajar", "Diana");
     println!("{}",diana);
+}
+fn recall(){
+    recall_a();
+    recall_b();
+    potong_paras();
+}
+fn recall_b(){
+    let a: &str = " Farras ";
+    let trim: &str = a.trim();
+
+    println!("{}",trim);
+}
+fn recall_a(){
+    let a: &str = " pacar citra ";
+    let trim: &str = a.trim();
+
+    println!("{}",trim);
+}
+
+fn potong_paras(){
+    let  mut name: String = String::from("Faras");
+    println!("{}", name);
+
+    name.push_str("subhan");
+    println!("{}",name);
+
+    let panjang: String = name.replace("Faras", "Citra");
+    println!("{}",panjang);
+}
+
+fn ownership(){
+    let a = 10;
+    {
+        let b = 10;
+        println!("{}",b);
+    }
+
+    println!("{}",a);
+
 }
