@@ -1,17 +1,16 @@
-fn main() {
-    mulai_program();
+fn main(){
+ combine();
 }
 
-fn mulai_program() {
-    halo();
-    jumlahkan(4, 7);
+fn combine(){
+ hello();
+ pernjumlahan(3, 5);
 }
 
-fn halo() {
-    println!("Selamat datang!");
+fn hello(){
+    println!("Hai Ajarrr");
 }
-
-fn jumlahkan(a: i32, b: i32) {
+fn pernjumlahan(a: i32, b: i32){
     let hasil = a + b;
-    println!("Hasil penjumlahan: {}", hasil);
+    println!("Hasil Penjumlahan adalah {}",hasil);
 }
