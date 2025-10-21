@@ -1,30 +1,40 @@
-enum Direction{
-    Up,
-    Down,
-    Left,
-    Right,
+enum Transport {
+    Car(String, i32),
+    Bike(String),
+    Train,
 }
-enum Message {
-    Quit,
-    Move { x: i32, y: i32 },
-    Write(String),
-    ChangeColor(i32, i32, i32),
+
+impl Transport {
+    fn describe(&self){
+        match self {
+            Transport::Car(brand,year) => {
+                println!("Mobil Merk {} tahun {}",brand, year);
+            }
+            Transport::Bike(brand) => {
+                println!("Sepedeah Merk {}",brand);
+            }
+            Transport::Train =>{
+                println!("Kereta api umum");
+            }
+        }
+    }
+    
+    fn is_motorized(&self) -> bool {
+        match self {
+            Transport::Car(_,_ ) | Transport::Bike(_) => true, Transport::Train => false, 
+        }
+    }
 }
+
 fn main(){
-    let movement = Direction::Left;
+    let car = Transport::Car(String::from("Toyota"), 1966);
+    let bike= Transport::Bike (String::from("Polytron"));
+    let train = Transport::Train;
 
-    match movement {
-        Direction::Up => println!("Bergerak Keatas"),
-        Direction::Down => println!("Bergerak Kebawah"),
-        Direction::Left => println!("Bergerak Kiri"),
-        Direction::Right => println!("Bergerak Kanan"),
-    }
+    car.describe();
+    bike.describe();
+    train.describe();
 
-    let msg = Message::Move { x: 10, y: 20 };
-    match msg {
-        Message::Quit => println!("Program berhenti"),
-        Message::Move { x, y } => println!("Pindah ke posisi ({}, {})", x, y),
-        Message::Write(text) => println!("Menulis pesan: {}", text),
-        Message::ChangeColor(r, g, b) => println!("Ubah warna jadi RGB({}, {}, {})", r, g, b),
-    }
+    println!("Mobil Bermotor? {}", car.is_motorized());
+    println!("Kereta Bermotor? {}", train.is_motorized());
 }
