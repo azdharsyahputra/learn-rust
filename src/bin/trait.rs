@@ -1,27 +1,36 @@
-trait Speak {
-    fn say_hello(&self);
+trait Greet{
+    fn greet(&self);
 }
-struct Human;
-struct Dog;
 
+struct Human{
+    name: String
+}
 
-impl Speak for Human {
-    fn say_hello(&self) {
-        println!("Halo, aku manusia!");
+struct Robot{
+    id: i32
+}
+
+impl Greet for Human{
+    fn greet(&self) {
+        println!("Halo Aku {}", self.name)
     }
 }
 
-impl Speak for Dog {
-    fn say_hello(&self) {
-        println!("GOgogogogogo");
+impl Greet for Robot {
+    fn greet(&self) {
+        println!("Bip Bip Bop {}", self.id)
     }
-}
-
-fn greet<T: Speak>(thing: T){
-    thing.say_hello();
 }
 
 fn main(){
-    greet(Human);
-    greet(Dog);
+    let manusia = Human {name: "Diana".into()};
+    let robot = Robot{id: 39.into()};
+    
+    let mut entities : Vec<Box<dyn Greet>> = Vec::new();
+    entities.push(Box::new(manusia));
+    entities.push(Box::new(robot));
+
+    for e in entities{
+        e.greet();
+    }
 }
