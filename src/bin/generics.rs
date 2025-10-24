@@ -1,20 +1,23 @@
 use std::fmt::Display;
 
-fn lebih_besar<T>(a: T, b: T)
-where T: PartialOrd + Display,
-{
-    if a > b{
-        println!("{} Lebih besar dari {}", a, b);
-    }else if a < b {
-        println!("{} Lebih kecil dari {}", a, b);
-    }else {
-        println!("{} Sama Dengan {}", a, b);
+struct Kotak<T>{
+    isi: T,
+}
+
+impl <T: Display> Kotak<T> {
+    fn new(value: T) -> Self{
+        Kotak {isi : value}
     }
+
+    fn buka(&self){
+        println!("Isi Kotaknya: {}", self.isi);
+    }    
 }
 
 fn main(){
-    lebih_besar(20, 25);
-    lebih_besar(1, 1);
-    lebih_besar(2, 1);
-    lebih_besar("Rust", "Php");
+    let kotak_angka = Kotak::new("123");
+    let kotak_text = Kotak::new("Azdhar");
+
+    kotak_angka.buka();
+    kotak_text.buka();
 }
